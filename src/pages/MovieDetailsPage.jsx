@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
-export const MovieDetails = () => {
+export const MovieDetailsPage = () => {
   return (
     <main>
       <h1>Movie Details</h1>
@@ -14,7 +14,7 @@ export const MovieDetails = () => {
       <p>Additional information</p>
       <ul>
         <li>
-          <Link to="credits">Cast</Link>
+          <Link to="cast">Cast</Link>
         </li>
         <li>
           <Link to="reviews">Reviews</Link>

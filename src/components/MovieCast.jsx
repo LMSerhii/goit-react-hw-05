@@ -1,6 +1,6 @@
-import css from './Cast.module.css';
+import css from './MovieCast.module.css';
 
-export const Cast = () => {
+export const MovieCast = () => {
   return (
     <section className={css.cast}>
       <h1>Cast</h1>

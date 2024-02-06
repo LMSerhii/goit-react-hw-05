@@ -1,4 +1,4 @@
-export const Home = () => {
+export const HomePage = () => {
   return (
     <main>
       <h1>Trending movie today</h1>

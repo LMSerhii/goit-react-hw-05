@@ -1,6 +1,6 @@
-import css from './Reviews.module.css';
+import css from './MovieReviews.module.css';
 
-export const Reviews = () => {
+export const MovieReviews = () => {
   return (
     <section className={css.reviews}>
       <h1>Reviews</h1>
