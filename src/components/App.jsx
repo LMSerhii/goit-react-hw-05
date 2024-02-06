@@ -1,39 +1,27 @@
+import { Routes, Route } from 'react-router-dom';
 import style from './App.module.css';
-import { getTrendingMovies, getConfiguration } from '../js/helpers/api';
-import { useEffect, useState } from 'react';
+
+import { AppBar } from './AppBar';
+import { Home } from '../pages/Home';
+import { Movies } from '../pages/Movies';
+import { MovieDetails } from '../pages/MovieDetails';
+import { NotFound } from '../pages/NotFound';
+import { Cast } from './Cast';
+import { Reviews } from './Reviews';
 
 export const App = () => {
-  const [baseUrl, setBaseUrl] = useState();
-
-  useEffect(() => {
-    const getConfig = async () => {
-      const response = await getConfiguration();
-      setBaseUrl(response.images.base_url);
-    };
-
-    getConfig();
-
-    return () => {
-      console.log('Component unmounted');
-    };
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getTrendingMovies();
-      console.log(response);
-    };
-
-    fetchData();
-    return () => {
-      console.log('Component unmounted');
-    };
-  }, []);
-
   return (
     <div className={style.container}>
-      <h1>Film search</h1>
-      <p>{baseUrl}</p>
+      <AppBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="credits" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };
