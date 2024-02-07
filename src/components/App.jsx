@@ -2,10 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import style from './App.module.css';
 
 import { AppBar } from './AppBar';
-import { HomePage } from '../pages/HomePage';
-import { MoviesPage } from '../pages/MoviesPage';
-import { MovieDetailsPage } from '../pages/MovieDetailsPage';
-import { NotFound } from '../pages/NotFound';
+import HomePage from '../pages/HomePage';
+import MoviesPage from '../pages/MoviesPage';
+import MovieDetailsPage from '../pages/MovieDetailsPage';
+import NotFound from '../pages/NotFound';
 import { MovieCast } from './MovieCast';
 import { MovieReviews } from './MovieReviews';
 

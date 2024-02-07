@@ -6,7 +6,9 @@ import { Bars } from 'react-loader-spinner';
 import { BackLink } from '../components/BackLink';
 import { ErrorMessage } from '../components/ErrorMessage';
 
-export const MovieDetailsPage = () => {
+import { common } from '../js/helpers/common';
+
+export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
 
@@ -31,17 +33,16 @@ export const MovieDetailsPage = () => {
   }, [movieId]);
 
   const backLinkHref = location.state?.from ?? '/movies';
-  const baseUrl = 'http://image.tmdb.org/t/p/' + 'w500';
 
   return (
     <main>
       <BackLink to={backLinkHref}>Back to movies</BackLink>
       {error && <ErrorMessage />}
 
-      {!loader && movieDetails && (
+      {movieDetails && (
         <div>
           <img
-            src={baseUrl + movieDetails.poster_path}
+            src={common.imageBaseUrl + movieDetails.poster_path}
             alt={movieDetails.original_title}
             width={500}
           />
@@ -74,4 +75,4 @@ export const MovieDetailsPage = () => {
       )}
     </main>
   );
-};
+}

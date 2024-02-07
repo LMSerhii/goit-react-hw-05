@@ -5,8 +5,9 @@ import { getData } from '../js/helpers/api';
 import { LoadMoreBtn } from '../components/LoadMore';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { Bars } from 'react-loader-spinner';
+import { removeDuplicates } from '../js/helpers/removeDetails';
 
-export const HomePage = () => {
+export default function HomePage() {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -14,21 +15,37 @@ export const HomePage = () => {
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     (async () => {
       try {
         setLoader(true);
         setError(false);
-        const response = await getData(page);
+        const response = await getData({
+          abortController: controller,
+          page,
+        });
         console.log(response.results);
         setTotalPages(response.total_pages);
-        setMovieList(response.results);
-        // setMovieList(prev => [...prev, ...response.results]);
+        // setMovieList(response.results);
+
+        setMovieList(prev => {
+          const uniqueArrey = removeDuplicates([...prev, ...response.results]);
+          console.log(uniqueArrey);
+          return uniqueArrey;
+        });
       } catch (error) {
-        setError(true);
+        if (error.code !== 'ERR_CANCELED') {
+          setError(true);
+        }
       } finally {
         setLoader(false);
       }
     })();
+
+    return () => {
+      controller.abort();
+    };
   }, [page]);
 
   const handleClick = () => {
@@ -38,6 +55,7 @@ export const HomePage = () => {
   return (
     <main>
       <h1>Trending movie today</h1>
+
       {error && <ErrorMessage />}
 
       {movieList.length > 0 && <MovieList movieList={movieList} />}
@@ -58,4 +76,4 @@ export const HomePage = () => {
       )}
     </main>
   );
-};
+}

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import css from './MovieItem.module.css';
-
-const baseUrl = 'http://image.tmdb.org/t/p/' + 'w500';
+import { common } from '../js/helpers/common';
 
 export const MovieItem = ({ id, title, poster_path }) => {
   const location = useLocation();
@@ -24,7 +23,7 @@ export const MovieItem = ({ id, title, poster_path }) => {
       <Link to={`/movies/${id}`} state={{ from: location }}>
         <img
           className={css.img}
-          src={baseUrl + poster_path}
+          src={common.imageBaseUrl + poster_path}
           alt={title}
           width={500}
           loading="lazy"

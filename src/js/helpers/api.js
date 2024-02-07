@@ -8,12 +8,13 @@ const headers = {
   accept: 'application/json',
 };
 
-export const getData = async page => {
+export const getData = async ({ page, abortController }) => {
   const options = {
     method: 'GET',
     headers,
     url: `trending/movie/day`,
     params: { page, language: 'en-US' },
+    signal: abortController.signal,
   };
 
   const response = await axios(options);

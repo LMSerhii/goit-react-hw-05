@@ -1,4 +1,4 @@
-export const MoviesPage = () => {
+export default function MoviesPage() {
   return (
     <main>
       <h1>Find your favorite movie</h1>
@@ -11,4 +11,4 @@ export const MoviesPage = () => {
       </p>
     </main>
   );
-};
+}
