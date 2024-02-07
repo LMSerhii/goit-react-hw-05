@@ -21,7 +21,7 @@ export const MovieItem = ({ id, title, poster_path }) => {
 
   return (
     <li>
-      <Link to={`movies/${id}`} state={{ from: location }}>
+      <Link to={`/movies/${id}`} state={{ from: location }}>
         <img
           className={css.img}
           src={baseUrl + poster_path}

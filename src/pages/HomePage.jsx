@@ -10,22 +10,15 @@ export const HomePage = () => {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [period, setPeriod] = useState('day');
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    const url = `trending/movie/${period}`;
-    const params = {
-      page,
-      language: 'en-US',
-    };
-
     (async () => {
       try {
         setLoader(true);
         setError(false);
-        const response = await getData(url, params);
+        const response = await getData(page);
         console.log(response.results);
         setTotalPages(response.total_pages);
         setMovieList(response.results);
@@ -36,7 +29,7 @@ export const HomePage = () => {
         setLoader(false);
       }
     })();
-  }, [page, period]);
+  }, [page]);
 
   const handleClick = () => {
     setPage(page + 1);
