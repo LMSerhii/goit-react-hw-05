@@ -1,7 +1,7 @@
 export const MoviesPage = () => {
   return (
     <main>
-      <h1>Search Film</h1>
+      <h1>Find your favorite movie</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis vel
         dolores asperiores a sequi, dolorem, maxime architecto, perferendis nisi

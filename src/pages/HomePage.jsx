@@ -1,14 +1,68 @@
+import { useEffect } from 'react';
+import { MovieList } from '../components/MovieList';
+import { useState } from 'react';
+import { getData } from '../js/helpers/api';
+import { LoadMoreBtn } from '../components/LoadMore';
+import { ErrorMessage } from '../components/ErrorMessage';
+import { Bars } from 'react-loader-spinner';
+
 export const HomePage = () => {
+  const [movieList, setMovieList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [period, setPeriod] = useState('day');
+  const [error, setError] = useState(false);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    const url = `trending/movie/${period}`;
+    const params = {
+      page,
+      language: 'en-US',
+    };
+
+    (async () => {
+      try {
+        setLoader(true);
+        setError(false);
+        const response = await getData(url, params);
+        console.log(response.results);
+        setTotalPages(response.total_pages);
+        setMovieList(response.results);
+        // setMovieList(prev => [...prev, ...response.results]);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    })();
+  }, [page, period]);
+
+  const handleClick = () => {
+    setPage(page + 1);
+  };
+
   return (
     <main>
       <h1>Trending movie today</h1>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea nisi iste
-        voluptas excepturi, dolores animi debitis sapiente pariatur, minus quis
-        omnis, sit accusantium nulla aperiam explicabo veritatis asperiores
-        perspiciatis perferendis commodi at odit necessitatibus eum iure. Unde
-        nam optio error.
-      </p>
+      {error && <ErrorMessage />}
+
+      {movieList.length > 0 && <MovieList movieList={movieList} />}
+
+      {loader && (
+        <Bars
+          height="80"
+          width="80"
+          color="#747bff"
+          ariaLabel="bars-loading"
+          wrapperClass="loader"
+          visible={true}
+        />
+      )}
+
+      {movieList.length > 0 && !loader && page < totalPages && (
+        <LoadMoreBtn onClick={handleClick} />
+      )}
     </main>
   );
 };

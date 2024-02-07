@@ -60,6 +60,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -67,6 +68,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin-bottom: 24px;
 }
 
 button {
@@ -103,4 +105,12 @@ main {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-content: center;
+  height: 80vh;
 }
