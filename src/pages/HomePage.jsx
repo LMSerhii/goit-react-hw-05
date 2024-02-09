@@ -5,7 +5,6 @@ import { getData } from '../js/helpers/api';
 import { LoadMoreBtn } from '../components/LoadMore';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { Bars } from 'react-loader-spinner';
-import { deleteObjDuplicates } from '../js/helpers/removeDuplicates';
 
 export default function HomePage() {
   const [movieList, setMovieList] = useState([]);
