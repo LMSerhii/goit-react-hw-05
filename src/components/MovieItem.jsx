@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import css from './MovieItem.module.css';
 import { common } from '../js/helpers/common';
 
-export const MovieItem = ({ id, title, poster_path }) => {
+export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
   const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
-  const [fullTitle, setFullTitle] = useState(title.slice(0, 18));
+  const [currTitle, setFullTitle] = useState(title.slice(0, 18));
 
   const handleMouseEnter = () => {
     setFullTitle(title);
@@ -18,12 +18,16 @@ export const MovieItem = ({ id, title, poster_path }) => {
     setIsHovered(false);
   };
 
+  const dateConverter = new Date(releaseDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+  });
+
   return (
     <li>
       <Link to={`/movies/${id}`} state={{ from: location }}>
         <img
           className={css.img}
-          src={common.imageBaseUrl + poster_path}
+          src={`${common.imageBaseUrl}w500${posterPath}`}
           alt={title}
           width={500}
           loading="lazy"
@@ -34,11 +38,11 @@ export const MovieItem = ({ id, title, poster_path }) => {
           onMouseLeave={handleMouseLeave}
         >
           <h2 className={css.title}>
-            {fullTitle.length < 18
-              ? fullTitle
+            {currTitle.length < 18
+              ? `${currTitle} (${dateConverter})`
               : isHovered
-              ? fullTitle
-              : `${fullTitle}...`}
+              ? `${currTitle} (${dateConverter})`
+              : `${currTitle}... (${dateConverter})`}
           </h2>
         </div>
       </Link>

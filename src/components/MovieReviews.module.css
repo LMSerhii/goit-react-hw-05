@@ -1,0 +1,20 @@
+.reviews {
+  background-color: #363a3e;
+  padding: 20px;
+}
+
+.reviewsItem {
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+}
+
+.reviewsItem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.img,
+.name,
+.date {
+  margin-bottom: 15px;
+}

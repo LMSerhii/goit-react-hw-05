@@ -1,12 +1,11 @@
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getDataById } from '../js/helpers/api';
 import { useEffect, useState } from 'react';
 import { Bars } from 'react-loader-spinner';
 
 import { BackLink } from '../components/BackLink';
+import { MovieDetails } from '../components/MovieDetails';
 import { ErrorMessage } from '../components/ErrorMessage';
-
-import { common } from '../js/helpers/common';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -17,13 +16,13 @@ export default function MovieDetailsPage() {
   const [loader, setLoader] = useState();
 
   useEffect(() => {
+    if (!movieId) return;
     (async () => {
       try {
         setError(false);
         setLoader(true);
         const resp = await getDataById(movieId);
         setMovieDetails(resp);
-        console.log(resp);
       } catch (error) {
         setError(true);
       } finally {
@@ -37,30 +36,17 @@ export default function MovieDetailsPage() {
   return (
     <main>
       <BackLink to={backLinkHref}>Back to movies</BackLink>
+
       {error && <ErrorMessage />}
 
       {movieDetails && (
-        <div>
-          <img
-            src={common.imageBaseUrl + movieDetails.poster_path}
-            alt={movieDetails.original_title}
-            width={500}
-          />
-          <div>
-            <h1>{movieDetails.original_title}</h1>
-            <p>{movieDetails.overview}</p>
-            <p>Additional information</p>
-            <ul>
-              <li>
-                <Link to="cast">Cast</Link>
-              </li>
-              <li>
-                <Link to="reviews">Reviews</Link>
-              </li>
-            </ul>
-          </div>
-          <Outlet />
-        </div>
+        <MovieDetails
+          title={movieDetails.original_title}
+          posterPath={movieDetails.poster_path}
+          description={movieDetails.overview}
+          releaseDate={movieDetails.release_date}
+          rating={movieDetails.vote_average}
+        />
       )}
 
       {loader && (

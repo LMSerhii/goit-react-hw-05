@@ -34,3 +34,29 @@ export const getDataById = async movieId => {
 
   return response.data;
 };
+
+export const getCreditsById = async movieId => {
+  const options = {
+    method: 'GET',
+    headers,
+    url: `/movie/${movieId}/credits`,
+    params: { language: 'en-US' },
+  };
+
+  const response = await axios(options);
+
+  return response.data;
+};
+
+export const getReviewsById = async movieId => {
+  const options = {
+    method: 'GET',
+    headers,
+    url: `/movie/${movieId}/reviews`,
+    params: { language: 'en-US' },
+  };
+
+  const response = await axios(options);
+
+  return response.data;
+};

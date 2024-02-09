@@ -5,7 +5,7 @@ import { getData } from '../js/helpers/api';
 import { LoadMoreBtn } from '../components/LoadMore';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { Bars } from 'react-loader-spinner';
-import { removeDuplicates } from '../js/helpers/removeDetails';
+import { deleteObjDuplicates } from '../js/helpers/removeDuplicates';
 
 export default function HomePage() {
   const [movieList, setMovieList] = useState([]);
@@ -25,15 +25,17 @@ export default function HomePage() {
           abortController: controller,
           page,
         });
-        console.log(response.results);
         setTotalPages(response.total_pages);
-        // setMovieList(response.results);
 
-        setMovieList(prev => {
-          const uniqueArrey = removeDuplicates([...prev, ...response.results]);
-          console.log(uniqueArrey);
-          return uniqueArrey;
-        });
+        // setMovieList(prev => {
+        //   const uniqueArrey = deleteObjDuplicates([
+        //     ...prev,
+        //     ...response.results,
+        //   ]);
+        //   return uniqueArrey;
+        // });
+
+        setMovieList(prev => [...prev, ...response.results]);
       } catch (error) {
         if (error.code !== 'ERR_CANCELED') {
           setError(true);
