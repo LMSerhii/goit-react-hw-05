@@ -20,6 +20,7 @@ export default function MoviesPage() {
   const params = searchParams.get('params') ?? '';
 
   useEffect(() => {
+    if (!params) return;
     (async () => {
       try {
         setLoader(true);

@@ -21,7 +21,6 @@ export const MovieCast = () => {
         setLoader(true);
         const resp = await getCreditsById(movieId);
         setCredits(resp.cast);
-        console.log(resp.cast);
       } catch (error) {
         setError(true);
       } finally {
@@ -34,7 +33,7 @@ export const MovieCast = () => {
     <>
       {error && <ErrorMessage />}
 
-      {credits && (
+      {credits ? (
         <section className={css.cast}>
           <ul className={css.castList}>
             {credits.map(({ credit_id, profile_path, name, character }) => {
@@ -51,10 +50,15 @@ export const MovieCast = () => {
                     width={250}
                   />
                   <p>{name}</p>
+                  <p>{`(${character})`}</p>
                 </li>
               );
             })}
           </ul>
+        </section>
+      ) : (
+        <section className={css.cast}>
+          <p>No information</p>
         </section>
       )}
 
