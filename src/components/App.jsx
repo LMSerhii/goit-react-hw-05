@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import style from './App.module.css';
 
-import { AppBar } from './AppBar';
 import HomePage from '../pages/HomePage';
 import MoviesPage from '../pages/MoviesPage';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
 import NotFound from '../pages/NotFound';
+
+import { AppBar } from './AppBar';
 import { MovieCast } from './MovieCast';
 import { MovieReviews } from './MovieReviews';
 

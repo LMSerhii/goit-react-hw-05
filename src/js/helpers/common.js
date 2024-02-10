@@ -1,5 +1,10 @@
+import defImage from '../../image/noimage.png';
+import movieDefultImage from '../../image/NOMOVIE.png';
+import castDefaultImage from '../../image/NOPHOTO.png';
+
 export const common = {
   imageBaseUrl: 'http://image.tmdb.org/t/p/',
-  defaultImg:
-    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image?s=1000x700',
+  defaultImg: defImage,
+  movieDefultImage,
+  castDefaultImage,
 };

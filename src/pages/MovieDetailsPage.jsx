@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { getDataById } from '../js/helpers/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Bars } from 'react-loader-spinner';
 
 import { BackLink } from '../components/BackLink';
@@ -10,6 +10,7 @@ import { ErrorMessage } from '../components/ErrorMessage';
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
+  const backLinkRef = useRef(location.state?.from);
 
   const [movieDetails, setMovieDetails] = useState(null);
   const [error, setError] = useState();
@@ -31,11 +32,9 @@ export default function MovieDetailsPage() {
     })();
   }, [movieId]);
 
-  const backLinkHref = location.state?.from ?? '/movies';
-
   return (
     <main>
-      <BackLink to={backLinkHref}>Back to movies</BackLink>
+      <BackLink to={backLinkRef.current ?? '/movies'}>Back to movies</BackLink>
 
       {error && <ErrorMessage />}
 

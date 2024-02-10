@@ -44,17 +44,19 @@ export const MovieReviews = () => {
               }) => {
                 return (
                   <li className={css.reviewsItem} key={id}>
-                    <img
-                      className={css.img}
-                      src={
-                        avatar_path
-                          ? `${common.imageBaseUrl}w185${avatar_path}`
-                          : common.defaultImg
-                      }
-                      alt={`poster`}
-                      width={250}
-                      loading="lazy"
-                    />
+                    <div className={css.thumb}>
+                      <img
+                        className={css.img}
+                        src={
+                          avatar_path
+                            ? `${common.imageBaseUrl}w185${avatar_path}`
+                            : common.defaultImg
+                        }
+                        alt={`poster`}
+                        width={250}
+                        loading="lazy"
+                      />
+                    </div>
                     <p className={css.name}>{name}</p>
                     <p className={css.date}>
                       {new Date(updated_at).toLocaleDateString('en-US', {

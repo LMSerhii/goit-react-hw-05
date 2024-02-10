@@ -25,7 +25,11 @@ export const MovieDetails = ({
     <div className={css.detailsBox}>
       <img
         className={css.detailsImg}
-        src={`${common.imageBaseUrl}w500${posterPath}`}
+        src={
+          posterPath
+            ? `${common.imageBaseUrl}w500${posterPath}`
+            : common.movieDefultImage
+        }
         alt={`${title} poster`}
         width={500}
       />

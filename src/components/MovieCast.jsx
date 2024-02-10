@@ -37,25 +37,23 @@ export const MovieCast = () => {
       {credits && (
         <section className={css.cast}>
           <ul className={css.castList}>
-            {credits
-              .slice(0, 12)
-              .map(({ credit_id, profile_path, name, character }) => {
-                return (
-                  <li key={credit_id}>
-                    <img
-                      className={css.authorImg}
-                      src={
-                        profile_path
-                          ? `${common.imageBaseUrl}w185${profile_path}`
-                          : common.defaultImg
-                      }
-                      alt="poster"
-                      width={250}
-                    />
-                    <p>{name}</p>
-                  </li>
-                );
-              })}
+            {credits.map(({ credit_id, profile_path, name, character }) => {
+              return (
+                <li key={credit_id}>
+                  <img
+                    className={css.authorImg}
+                    src={
+                      profile_path
+                        ? `${common.imageBaseUrl}w185${profile_path}`
+                        : common.castDefaultImage
+                    }
+                    alt="poster"
+                    width={250}
+                  />
+                  <p>{name}</p>
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}

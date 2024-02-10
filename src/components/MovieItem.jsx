@@ -6,7 +6,7 @@ import { common } from '../js/helpers/common';
 export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
   const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
-  const [currTitle, setFullTitle] = useState(title.slice(0, 18));
+  const [currTitle, setFullTitle] = useState(title.slice(0, 11));
 
   const handleMouseEnter = () => {
     setFullTitle(title);
@@ -14,7 +14,7 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
   };
 
   const handleMouseLeave = () => {
-    setFullTitle(title.slice(0, 18));
+    setFullTitle(title.slice(0, 11));
     setIsHovered(false);
   };
 
@@ -27,7 +27,11 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
       <Link to={`/movies/${id}`} state={{ from: location }}>
         <img
           className={css.img}
-          src={`${common.imageBaseUrl}w500${posterPath}`}
+          src={
+            posterPath
+              ? `${common.imageBaseUrl}w500${posterPath}`
+              : common.movieDefultImage
+          }
           alt={title}
           width={500}
           loading="lazy"
@@ -38,7 +42,7 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
           onMouseLeave={handleMouseLeave}
         >
           <h2 className={css.title}>
-            {currTitle.length < 18
+            {currTitle.length < 11
               ? `${currTitle} (${dateConverter})`
               : isHovered
               ? `${currTitle} (${dateConverter})`
