@@ -42,7 +42,7 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
           onMouseLeave={handleMouseLeave}
         >
           {isHovered ? (
-            <marquee behavior="scroll" direction="left">
+            <marquee direction="left">
               {`${currTitle} (${dateConverter})`}
             </marquee>
           ) : currTitle.length < 11 ? (
