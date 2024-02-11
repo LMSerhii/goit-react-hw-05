@@ -11,6 +11,7 @@ export const MovieReviews = () => {
   const [reviews, setReviews] = useState(null);
   const [error, setError] = useState();
   const [loader, setLoader] = useState();
+  const [maxItems, setMaxItems] = useState(1);
 
   useEffect(() => {
     if (!movieId) return;
@@ -29,13 +30,22 @@ export const MovieReviews = () => {
     })();
   }, [movieId]);
 
+  const slicedArrey = arrey => {
+    return arrey.slice(0, maxItems);
+  };
+
+  const handleClick = () => {
+    setMaxItems(maxItems + 6);
+  };
+
   return (
     <>
       {error && <ErrorMessage />}
-      {reviews && (
+
+      {reviews?.length ? (
         <section className={css.reviews}>
           <ul className={css.reviewsList}>
-            {reviews.map(
+            {slicedArrey(reviews).map(
               ({
                 id,
                 updated_at,
@@ -71,6 +81,15 @@ export const MovieReviews = () => {
               }
             )}
           </ul>
+          {maxItems < reviews.length && (
+            <button className={css.moreBtn} type="button" onClick={handleClick}>
+              ...
+            </button>
+          )}
+        </section>
+      ) : (
+        <section className={css.reviews}>
+          <p>No information</p>
         </section>
       )}
       {loader && (

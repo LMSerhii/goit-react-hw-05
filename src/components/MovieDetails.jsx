@@ -33,7 +33,7 @@ export const MovieDetails = ({
         alt={`${title} poster`}
         width={500}
       />
-      <div>
+      <div className="infoBox">
         <h1>{title}</h1>
         <p className={css.releaseDate}>{dateConverter}</p>
         <p className={css.desc}>{description}</p>

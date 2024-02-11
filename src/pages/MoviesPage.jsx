@@ -21,6 +21,7 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!params) return;
+
     (async () => {
       try {
         setLoader(true);
@@ -33,7 +34,7 @@ export default function MoviesPage() {
 
         setTotalPages(response.total_pages);
 
-        setMovieList(response.results);
+        setMovieList(prev => [...prev, ...response.results]);
       } catch (error) {
         setError(true);
       } finally {
@@ -42,6 +43,10 @@ export default function MoviesPage() {
     })();
   }, [page, params]);
 
+  const handleSubmit = () => {
+    setMovieList([]);
+  };
+
   const handleClick = () => {
     setPage(page + 1);
   };
@@ -49,7 +54,7 @@ export default function MoviesPage() {
   return (
     <main>
       <h1>Find your favorite movie</h1>
-      <SearchBar setSearchParams={setSearchParams} />
+      <SearchBar onSubmit={handleSubmit} setSearchParams={setSearchParams} />
 
       {error && <ErrorMessage />}
 

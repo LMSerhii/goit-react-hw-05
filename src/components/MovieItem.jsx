@@ -41,13 +41,15 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <h2 className={css.title}>
-            {currTitle.length < 11
-              ? `${currTitle} (${dateConverter})`
-              : isHovered
-              ? `${currTitle} (${dateConverter})`
-              : `${currTitle}... (${dateConverter})`}
-          </h2>
+          {isHovered ? (
+            <marquee behavior="scroll" direction="left">
+              {`${currTitle} (${dateConverter})`}
+            </marquee>
+          ) : currTitle.length < 11 ? (
+            `${currTitle} (${dateConverter})`
+          ) : (
+            `${currTitle}... (${dateConverter})`
+          )}
         </div>
       </Link>
     </li>

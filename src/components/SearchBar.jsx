@@ -3,9 +3,10 @@ import { IconContext } from 'react-icons';
 
 import css from './SearchBar.module.css';
 
-export const SearchBar = ({ setSearchParams }) => {
+export const SearchBar = ({ onSubmit, setSearchParams }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
+    onSubmit();
     const form = evt.currentTarget;
     setSearchParams({ params: form.elements.searchBar.value });
     form.reset();

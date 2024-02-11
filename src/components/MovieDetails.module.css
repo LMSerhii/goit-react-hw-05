@@ -4,6 +4,9 @@
   align-self: flex-start;
 }
 
+.infoBox {
+}
+
 .link {
   min-width: 100px;
   display: block;

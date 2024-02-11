@@ -56,6 +56,9 @@ export default function HomePage() {
   return (
     <main>
       <h1>Trending movie today</h1>
+      {/* <marquee behavior="scroll" direction="left">
+        Trending movie today
+      </marquee> */}
 
       {error && <ErrorMessage />}
 
