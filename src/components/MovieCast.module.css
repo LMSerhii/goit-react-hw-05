@@ -8,6 +8,7 @@
 .castList {
   display: flex;
   column-gap: 10px;
+  justify-content: center;
   row-gap: 20px;
   flex-wrap: wrap;
 }
