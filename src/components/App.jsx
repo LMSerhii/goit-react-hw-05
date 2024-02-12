@@ -14,29 +14,16 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const App = () => {
   return (
-    <Suspense
-      fallback={
-        <Bars
-          height="80"
-          width="80"
-          color="#747bff"
-          ariaLabel="bars-loading"
-          wrapperClass="loader"
-          visible={true}
-        />
-      }
-    >
-      <Routes>
-        <Route path="/" element={<AppBar />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
+    <Routes>
+      <Route path="/" element={<AppBar />}>
+        <Route index element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
         </Route>
-      </Routes>
-    </Suspense>
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
