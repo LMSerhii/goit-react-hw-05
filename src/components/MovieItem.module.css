@@ -31,3 +31,12 @@
     font-size: 18px;
   }
 }
+
+.item {
+  transition: transform 250ms ease-in-out;
+}
+
+.item:hover,
+.item:focus {
+  transform: scale(1.03);
+}

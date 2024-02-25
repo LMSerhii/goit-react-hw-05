@@ -23,7 +23,7 @@ export const MovieItem = ({ id, title, posterPath, releaseDate }) => {
   });
 
   return (
-    <li>
+    <li className={css.item}>
       <Link to={`/movies/${id}`} state={{ from: location }}>
         <img
           className={css.img}
