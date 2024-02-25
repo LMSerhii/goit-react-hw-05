@@ -12,11 +12,11 @@ export const AppBar = () => {
   return (
     <header className={style.header}>
       <Link to="/" className={style.logo}>
-        Evening
+        <span>Evening</span>
         <span className={style.logoIcon}>
           <FaGun />
         </span>
-        movie
+        <span>movie</span>
       </Link>
       <nav className={style.nav}>
         <NavLink to="/" className={buildLinkClass}>

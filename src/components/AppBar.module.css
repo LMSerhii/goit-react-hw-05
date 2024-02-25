@@ -6,13 +6,23 @@
   border-bottom: 2px solid #52515157;
 }
 .logo {
+  display: flex;
+  gap: 10px;
   font-style: italic;
   text-transform: uppercase;
   color: rgba(144, 24, 24, 0.758);
 }
 .logoIcon {
-  margin: 0 5px 0 10px;
+  display: block;
   color: wheat;
+
+  transition: transform 250ms ease-in-out;
+}
+
+.logo:hover {
+  .logoIcon {
+    transform: scale(-1, 1);
+  }
 }
 
 .nav {
